@@ -1,5 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
-
+// Change code below this line
 
 const gallery = document.querySelector(".gallery");
 
@@ -24,30 +24,15 @@ new SimpleLightbox(".gallery a", {
 
 function onClickGallery(e) {
   e.preventDefault();
-  const url = e.target.dataset.source;
-  const description = e.target.alt;
-
-  if (!(url && description)) return;
-
-  lightbox = basicLightbox.create(genBigImg({ url, description }), {
-    onClose: () => {
-      gallery.removeEventListener("keydown", onKeyDownEsc);
-    },
-  });
-  lightbox.show();
-  gallery.addEventListener("keydown", onKeyDownEsc);
 }
 
 console.log(galleryItems);
 
-// ----------------------------------------------
+// ----------------------
+// -importuje obiekt galleryItems z pliku "./gallery-items.js". Następnie kod tworzy galerię obrazów na podstawie tego obiektu i wstawia ją do elementu o klasie .gallery.
 
-// Importuje obiekt galleryItems z pliku "./gallery-items.js".
-// Pobiera element HTML o klasie "gallery" i przypisuje go do zmiennej gallery.
-// Definiuje funkcję liItem, która jako argument przyjmuje obiekt zawierający pola preview, original i description. Funkcja ta zwraca kod HTML reprezentujący pojedynczy element listy (<li>) w galerii, zawierający link do oryginalnego obrazka i podglądową miniaturkę (<img>).
-// Definiuje funkcję getImages, która jako argument przyjmuje tablicę obiektów img. Funkcja ta mapuje każdy obiekt item na kod HTML reprezentujący pojedynczy element listy przy użyciu funkcji liItem, a następnie łączy te kody w jedną wielką ciągłą linię za pomocą metody join("").
-// Ustawia kod HTML wygenerowany przez funkcję getImages(galleryItems) jako zawartość elementu o klasie "gallery" przy użyciu właściwości innerHTML.
-// Dodaje nasłuchiwanie na zdarzenie "click" na elemencie o klasie "gallery" i wywołuje funkcję onClickGallery w odpowiedzi na to zdarzenie.
-// Inicjalizuje bibliotekę SimpleLightbox, która umożliwia wyświetlanie obrazków w większym rozmiarze po kliknięciu na ich miniaturkę w galerii. Ta biblioteka używa selektora ".gallery a" do znalezienia odpowiednich linków w galerii i konfiguruje, żeby opisy obrazków były pobierane z atrybutu "alt" elementów <img>, a opóźnienie na wyświetlanie podpisów wynosi 250ms.
-// Definiuje funkcję onClickGallery, która zatrzymuje domyślną akcję po kliknięciu na element z klasą "gallery" (w tym przypadku linki z obrazkami).
-// Wyświetla w konsoli zawartość tablicy galleryItems.
+// -definiuje funkcję genLiItem, która tworzy element listy li zawierający link do oryginalnego obrazu i obrazek o podglądzie oraz opisie. Funkcja ta jest wykorzystywana w funkcji getImages, która mapuje elementy obiektu galleryItems i tworzy listę elementów li. Następnie funkcja getImages łączy te elementy w jedną ciągłą listę za pomocą metody join(""). Wynik tej funkcji jest przypisywany do innerHTML elementu .gallery, co efektywnie wstawia galerię obrazów do strony.
+
+// -nasłuchuje na kliknięcie na elementy w galerii za pomocą metody addEventListener i przekierowuje do metodę onClickGallery, która wywołuje e.preventDefault() w celu zatrzymania domyślnej akcji.
+
+// -na końcu kodu galleryItems jest wypisywane w konsoli.
