@@ -24,6 +24,18 @@ new SimpleLightbox(".gallery a", {
 
 function onClickGallery(e) {
   e.preventDefault();
+  const url = e.target.dataset.source;
+  const description = e.target.alt;
+
+  if (!(url && description)) return;
+
+  lightbox = basicLightbox.create(genBigImg({ url, description }), {
+    onClose: () => {
+      gallery.removeEventListener("keydown", onKeyDownEsc);
+    },
+  });
+  lightbox.show();
+  gallery.addEventListener("keydown", onKeyDownEsc);
 }
 
 console.log(galleryItems);
